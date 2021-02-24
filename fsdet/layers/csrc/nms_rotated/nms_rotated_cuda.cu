@@ -76,8 +76,8 @@ at::Tensor nms_rotated_cuda(
     const at::Tensor& scores,
     float iou_threshold) {
   // using scalar_t = float;
-  AT_ASSERTM(dets.type().is_cuda(), "dets must be a CUDA tensor");
-  AT_ASSERTM(scores.type().is_cuda(), "scores must be a CUDA tensor");
+  AT_ASSERTM(dets.options().is_cuda(), "dets must be a CUDA tensor");
+  AT_ASSERTM(scores.options().is_cuda(), "scores must be a CUDA tensor");
   at::cuda::CUDAGuard device_guard(dets.device());
 
   auto order_t = std::get<1>(scores.sort(0, /* descending=*/true));
@@ -95,7 +95,7 @@ at::Tensor nms_rotated_cuda(
   cudaStream_t stream = at::cuda::getCurrentCUDAStream();
 
   AT_DISPATCH_FLOATING_TYPES_AND_HALF(
-      dets_sorted.type(), "nms_rotated_kernel_cuda", [&] {
+      dets_sorted.options(), "nms_rotated_kernel_cuda", [&] {
         nms_rotated_cuda_kernel<scalar_t><<<blocks, threads, 0, stream>>>(
             dets_num,
             iou_threshold,

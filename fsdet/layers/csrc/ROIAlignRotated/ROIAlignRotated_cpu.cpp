@@ -444,7 +444,7 @@ at::Tensor ROIAlignRotated_forward_cpu(
   }
 
   AT_DISPATCH_FLOATING_TYPES_AND_HALF(
-      input.options(), "ROIAlignRotated_forward", [&] {
+      input.type(), "ROIAlignRotated_forward", [&] {
         ROIAlignRotatedForward<scalar_t>(
             output_size,
             input.contiguous().data_ptr<scalar_t>(),
@@ -495,7 +495,7 @@ at::Tensor ROIAlignRotated_backward_cpu(
   int w_stride = grad.stride(3);
 
   AT_DISPATCH_FLOATING_TYPES_AND_HALF(
-      grad.options(), "ROIAlignRotated_forward", [&] {
+      grad.type(), "ROIAlignRotated_forward", [&] {
         ROIAlignRotatedBackward<scalar_t>(
             grad.numel(),
             grad.contiguous().data_ptr<scalar_t>(),

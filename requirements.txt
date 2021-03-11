@@ -9,3 +9,5 @@ cloudpickle
 Pillow
 imagesize
 tensorboard
+pyyaml>=5.1
+fvcore

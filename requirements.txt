@@ -12,3 +12,5 @@ tensorboard
 pyyaml>=5.1
 fvcore
 torch
+torchvision
+pycocotools

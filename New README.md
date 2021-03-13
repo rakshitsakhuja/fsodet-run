@@ -2,12 +2,12 @@
 
 
 -------------------------------------
-- pip install -r requirements.txt
--   (There are some of the updates in requirement.txt file)
+1. pip install -r requirements.txt
+    -   (There are some of the updates in requirement.txt file)
 
-- python setup.py build develop
--   (Did one change in fsdet\layers\csrc\deformable\deform_conv.h)
--   Added below lines as above mentioned file as AT_CHECK has some compatibility issues ----spent a lot of time while doing  build develop as there were some errors and warnings but after adding below line only warnings are remaining there now and it was able to run
+2. python setup.py build develop
+    -   (Did one change in fsdet\layers\csrc\deformable\deform_conv.h)
+    -   Added below lines as above mentioned file as AT_CHECK has some compatibility issues ----spent a lot of time while doing  build develop as there were some errors and warnings but after adding below line only warnings are remaining there now and it was able to run
 
 ```
 #ifndef AT_CHECK
@@ -16,10 +16,10 @@
 ```
 
 3. wget http://dl.yf.io/fs-det/models/voc/split1/FRCN+ft-full_1shot/model_final.pth --- to download the one-shot model
--  Downloaded sample 10 images from Pascal-VOC Dataset
+    -  Downloaded sample 10 images from Pascal-VOC Dataset
 
 4. python3 demo/demo.py --config-file configs/PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_all1_1shot_unfreeze.yaml --input inp3.jpg inp4.jpg  --output output/ --opts  MODEL.WEIGHTS model_final.pth
--  images with same name are saved in output folder - inp0 and inp5 were not able to be predicted properly
+    -  images with same name are saved in output folder - inp0 and inp5 were not able to be predicted properly
 
 5. While trying train module it gave IO error
 

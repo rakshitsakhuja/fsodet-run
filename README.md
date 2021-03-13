@@ -1,10 +1,49 @@
 # Few-Shot Object Detection (FsDet)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/ucbdrive/few-shot-object-detection.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ucbdrive/few-shot-object-detection/context:python)
 
 FsDet contains the official few-shot object detection implementation of the ICML 2020 paper
 [Frustratingly Simple Few-Shot Object Detection](https://arxiv.org/abs/2003.06957).
 ![TFA Figure](https://user-images.githubusercontent.com/7898443/76520006-698cc200-6438-11ea-864f-fd30b3d50cea.png)
 
+
+1. pip install -r requirements.txt
+(There are some of the updates in requirement.txt file)
+
+2. python setup.py build develop
+(Did one change in fsdet\layers\csrc\deformable\deform_conv.h)
+Added below lines as above mentioned file as AT_CHECK has some compatibility issues
+-- spent a lot of time while doing  build develop as there were some errors and warnings but after adding below line only warnings are remaining there now and it was able to run
+
+#ifndef AT_CHECK
+#define AT_CHECK TORCH_CHECK 
+#endif
+
+3. wget http://dl.yf.io/fs-det/models/voc/split1/FRCN+ft-full_1shot/model_final.pth
+to download the one-shot model
+
+Downloaded sample 10 images from Pascal-VOC Dataset
+
+4. python3 demo/demo.py --config-file configs/PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_all1_1shot_unfreeze.yaml --input inp3.jpg inp4.jpg  --output output/ --opts  MODEL.WEIGHTS model_final.pth
+
+images with same name are saved in output folder - inp0 and inp5 were not able to be predicted properly
+
+5. while trying train module it gave IO error
+
+
+Google Drive Path : https://drive.google.com/drive/folders/1afJVwpUlj17T_l3l7U_uX2XspZ9uO8Gq?usp=sharing
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------
 In addition to the benchmarks used by previous works, we introduce new benchmarks on three datasets: PASCAL VOC, COCO, and LVIS. We sample multiple groups of few-shot training examples for multiple runs of the experiments and report evaluation results on both the base classes and the novel classes. These are described in more detail in [Data Preparation](#data-preparation).
 
 We also provide benchmark results and pre-trained models for our two-stage fine-tuning approach (TFA). In TFA, we first train the entire object detector on the data-abundant base classes, and then only fine-tune the last layers of the detector on a small balanced training set. See [Models](#models) for our provided models and [Getting Started](#getting-started) for instructions on training and evaluation.

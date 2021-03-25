@@ -1,0 +1,2668 @@
+Split: 3, Seed: 0, Shot: 1
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:11 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:48:11 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:11 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+_BASE_: "../../Base-RCNN-FPN.yaml"
+
+MODEL:
+
+  WEIGHTS: "checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth"
+
+  MASK_ON: False
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: "CosineSimOutputLayers"
+
+    FREEZE_FEAT: True
+
+  BACKBONE:
+
+    FREEZE: True
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: True
+
+INPUT:
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+  MIN_SIZE_TEST: 800
+
+DATASETS:
+
+  TRAIN: ('voc_2007_trainval_all3_1shot',)
+
+  TEST: ('voc_2007_test_all3',)
+
+SOLVER:
+
+  IMS_PER_BATCH: 16
+
+  BASE_LR: 0.001
+
+  STEPS: (3000,)
+
+  MAX_ITER: 4000
+
+  CHECKPOINT_PERIOD: 500
+
+  WARMUP_ITERS: 0
+
+OUTPUT_DIR: "checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_ft_normalized_all3_1shot_randnovel"
+
+[32m[03/24 15:48:11 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_ft_normalized_all3_1shot_randnovel/config.yaml
+
+[32m[03/24 15:48:11 fsdet.utils.env]: [0mUsing a generated random seed 11293854
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+Traceback (most recent call last):
+
+  File "tools/train_net.py", line 120, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/train_net.py", line 106, in main
+
+    trainer = Trainer(cfg)
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/defaults.py", line 268, in __init__
+
+    data_loader = self.build_train_loader(cfg)
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/defaults.py", line 445, in build_train_loader
+
+    return build_detection_train_loader(cfg)
+
+  File "/home/ubuntu/fsodet-run/fsdet/data/build.py", line 219, in build_detection_train_loader
+
+    filter_empty=cfg.DATALOADER.FILTER_EMPTY_ANNOTATIONS,
+
+  File "/home/ubuntu/fsodet-run/fsdet/data/build.py", line 164, in get_detection_dataset_dicts
+
+    dataset_dicts = [DatasetCatalog.get(dataset_name) for dataset_name in dataset_names]
+
+  File "/home/ubuntu/fsodet-run/fsdet/data/build.py", line 164, in <listcomp>
+
+    dataset_dicts = [DatasetCatalog.get(dataset_name) for dataset_name in dataset_names]
+
+  File "/home/ubuntu/fsodet-run/fsdet/data/catalog.py", line 62, in get
+
+    return f()
+
+  File "/home/ubuntu/fsodet-run/fsdet/data/datasets/meta_pascal_voc.py", line 131, in <lambda>
+
+    name, dirname, split, thing_classes)
+
+  File "/home/ubuntu/fsodet-run/fsdet/data/datasets/meta_pascal_voc.py", line 37, in load_filtered_voc_instances
+
+    "box_{}shot_{}_train.txt".format(shot, cls))) as f:
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/file_io.py", line 114, in open
+
+    path, mode, buffering=buffering, **kwargs
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/iopath/common/file_io.py", line 589, in _open
+
+    opener=opener,
+
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/vocsplit/box_1shot_aeroplane_train.txt'
+
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:17 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:48:17 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:17 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+_BASE_: "../../Base-RCNN-FPN.yaml"
+
+MODEL:
+
+  WEIGHTS: "checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth"
+
+  MASK_ON: False
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: "CosineSimOutputLayers"
+
+    FREEZE_FEAT: True
+
+  BACKBONE:
+
+    FREEZE: True
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: True
+
+INPUT:
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+  MIN_SIZE_TEST: 800
+
+DATASETS:
+
+  TRAIN: ('voc_2007_trainval_all3_1shot',)
+
+  TEST: ('voc_2007_test_all3',)
+
+SOLVER:
+
+  IMS_PER_BATCH: 16
+
+  BASE_LR: 0.001
+
+  STEPS: (3000,)
+
+  MAX_ITER: 4000
+
+  CHECKPOINT_PERIOD: 500
+
+  WARMUP_ITERS: 0
+
+OUTPUT_DIR: "checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_ft_normalized_all3_1shot_randnovel"
+
+[32m[03/24 15:48:17 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_ft_normalized_all3_1shot_randnovel/config.yaml
+
+[32m[03/24 15:48:17 fsdet.utils.env]: [0mUsing a generated random seed 17984165
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:48:22 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/test_net.py", line 197, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/test_net.py", line 145, in main
+
+    ckpt_file, resume=resume)
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+Split: 3, Seed: 1, Shot: 1
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed1/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed1/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:24 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:48:24 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed1/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:24 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed1/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed1
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed1/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:48:24 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed1/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:48:24 fsdet.utils.env]: [0mUsing a generated random seed 24654378
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:48:29 fsdet.data.build]: [0mRemoved 0 images with no usable annotations. 20 images left.
+
+[32m[03/24 15:48:29 fsdet.data.build]: [0mDistribution of training instances among all 20 categories:
+
+[36m|  category   | #instances   |  category  | #instances   |  category   | #instances   |
+
+|:-----------:|:-------------|:----------:|:-------------|:-----------:|:-------------|
+
+|  aeroplane  | 1            |  bicycle   | 1            |    bird     | 1            |
+
+|   bottle    | 1            |    bus     | 1            |     car     | 1            |
+
+|    chair    | 1            |    cow     | 1            | diningtable | 1            |
+
+|     dog     | 1            |   horse    | 1            |   person    | 1            |
+
+| pottedplant | 1            |   train    | 1            |  tvmonitor  | 1            |
+
+|    boat     | 1            |    cat     | 1            |  motorbike  | 1            |
+
+|    sheep    | 1            |    sofa    | 1            |             |              |
+
+|    total    | 20           |            |              |             |              |[0m
+
+[32m[03/24 15:48:29 fsdet.data.detection_utils]: [0mTransformGens used in training: [ResizeShortestEdge(short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800), max_size=1333, sample_style='choice'), RandomFlip()]
+
+[32m[03/24 15:48:29 fsdet.data.build]: [0mUsing training sampler TrainingSampler
+
+[32m[03/24 15:48:30 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/train_net.py", line 120, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/train_net.py", line 107, in main
+
+    trainer.resume_or_load(resume=args.resume)
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/defaults.py", line 307, in resume_or_load
+
+    self.checkpointer.resume_or_load(self.cfg.MODEL.WEIGHTS, resume=resume).get(
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed1/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed1/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:32 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:48:32 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed1/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:32 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed1/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed1
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed1/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:48:32 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed1/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:48:32 fsdet.utils.env]: [0mUsing a generated random seed 32192929
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:48:37 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/test_net.py", line 197, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/test_net.py", line 145, in main
+
+    ckpt_file, resume=resume)
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+Split: 3, Seed: 2, Shot: 1
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed2/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed2/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:38 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:48:38 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed2/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:38 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed2/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed2
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed2/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:48:38 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed2/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:48:38 fsdet.utils.env]: [0mUsing a generated random seed 38976806
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:48:43 fsdet.data.build]: [0mRemoved 0 images with no usable annotations. 20 images left.
+
+[32m[03/24 15:48:43 fsdet.data.build]: [0mDistribution of training instances among all 20 categories:
+
+[36m|  category   | #instances   |  category  | #instances   |  category   | #instances   |
+
+|:-----------:|:-------------|:----------:|:-------------|:-----------:|:-------------|
+
+|  aeroplane  | 1            |  bicycle   | 1            |    bird     | 1            |
+
+|   bottle    | 1            |    bus     | 1            |     car     | 1            |
+
+|    chair    | 1            |    cow     | 1            | diningtable | 1            |
+
+|     dog     | 1            |   horse    | 1            |   person    | 1            |
+
+| pottedplant | 1            |   train    | 1            |  tvmonitor  | 1            |
+
+|    boat     | 1            |    cat     | 1            |  motorbike  | 1            |
+
+|    sheep    | 1            |    sofa    | 1            |             |              |
+
+|    total    | 20           |            |              |             |              |[0m
+
+[32m[03/24 15:48:43 fsdet.data.detection_utils]: [0mTransformGens used in training: [ResizeShortestEdge(short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800), max_size=1333, sample_style='choice'), RandomFlip()]
+
+[32m[03/24 15:48:43 fsdet.data.build]: [0mUsing training sampler TrainingSampler
+
+[32m[03/24 15:48:44 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/train_net.py", line 120, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/train_net.py", line 107, in main
+
+    trainer.resume_or_load(resume=args.resume)
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/defaults.py", line 307, in resume_or_load
+
+    self.checkpointer.resume_or_load(self.cfg.MODEL.WEIGHTS, resume=resume).get(
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed2/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed2/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:46 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:48:46 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed2/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:46 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed2/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed2
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed2/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:48:46 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed2/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:48:46 fsdet.utils.env]: [0mUsing a generated random seed 46422103
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:48:51 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/test_net.py", line 197, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/test_net.py", line 145, in main
+
+    ckpt_file, resume=resume)
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+Split: 3, Seed: 3, Shot: 1
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:53 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:48:53 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:48:53 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed3
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed3/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:48:53 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed3/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:48:53 fsdet.utils.env]: [0mUsing a generated random seed 53211668
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:48:58 fsdet.data.build]: [0mRemoved 0 images with no usable annotations. 20 images left.
+
+[32m[03/24 15:48:58 fsdet.data.build]: [0mDistribution of training instances among all 20 categories:
+
+[36m|  category   | #instances   |  category  | #instances   |  category   | #instances   |
+
+|:-----------:|:-------------|:----------:|:-------------|:-----------:|:-------------|
+
+|  aeroplane  | 1            |  bicycle   | 1            |    bird     | 1            |
+
+|   bottle    | 1            |    bus     | 1            |     car     | 1            |
+
+|    chair    | 1            |    cow     | 1            | diningtable | 1            |
+
+|     dog     | 1            |   horse    | 1            |   person    | 1            |
+
+| pottedplant | 1            |   train    | 1            |  tvmonitor  | 1            |
+
+|    boat     | 1            |    cat     | 1            |  motorbike  | 1            |
+
+|    sheep    | 1            |    sofa    | 1            |             |              |
+
+|    total    | 20           |            |              |             |              |[0m
+
+[32m[03/24 15:48:58 fsdet.data.detection_utils]: [0mTransformGens used in training: [ResizeShortestEdge(short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800), max_size=1333, sample_style='choice'), RandomFlip()]
+
+[32m[03/24 15:48:58 fsdet.data.build]: [0mUsing training sampler TrainingSampler
+
+[32m[03/24 15:48:58 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/train_net.py", line 120, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/train_net.py", line 107, in main
+
+    trainer.resume_or_load(resume=args.resume)
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/defaults.py", line 307, in resume_or_load
+
+    self.checkpointer.resume_or_load(self.cfg.MODEL.WEIGHTS, resume=resume).get(
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:00 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:49:00 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:00 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed3
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed3/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:49:00 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed3/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:49:00 fsdet.utils.env]: [0mUsing a generated random seed 550482
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:49:05 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/test_net.py", line 197, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/test_net.py", line 145, in main
+
+    ckpt_file, resume=resume)
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+Split: 3, Seed: 4, Shot: 1
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed4/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed4/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:07 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:49:07 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed4/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:07 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed4/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed4
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed4/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:49:07 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed4/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:49:07 fsdet.utils.env]: [0mUsing a generated random seed 7367524
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:49:12 fsdet.data.build]: [0mRemoved 0 images with no usable annotations. 20 images left.
+
+[32m[03/24 15:49:12 fsdet.data.build]: [0mDistribution of training instances among all 20 categories:
+
+[36m|  category   | #instances   |  category  | #instances   |  category   | #instances   |
+
+|:-----------:|:-------------|:----------:|:-------------|:-----------:|:-------------|
+
+|  aeroplane  | 1            |  bicycle   | 1            |    bird     | 1            |
+
+|   bottle    | 1            |    bus     | 1            |     car     | 1            |
+
+|    chair    | 1            |    cow     | 1            | diningtable | 1            |
+
+|     dog     | 1            |   horse    | 1            |   person    | 1            |
+
+| pottedplant | 1            |   train    | 1            |  tvmonitor  | 1            |
+
+|    boat     | 1            |    cat     | 1            |  motorbike  | 1            |
+
+|    sheep    | 1            |    sofa    | 1            |             |              |
+
+|    total    | 20           |            |              |             |              |[0m
+
+[32m[03/24 15:49:12 fsdet.data.detection_utils]: [0mTransformGens used in training: [ResizeShortestEdge(short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800), max_size=1333, sample_style='choice'), RandomFlip()]
+
+[32m[03/24 15:49:12 fsdet.data.build]: [0mUsing training sampler TrainingSampler
+
+[32m[03/24 15:49:12 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/train_net.py", line 120, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/train_net.py", line 107, in main
+
+    trainer.resume_or_load(resume=args.resume)
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/defaults.py", line 307, in resume_or_load
+
+    self.checkpointer.resume_or_load(self.cfg.MODEL.WEIGHTS, resume=resume).get(
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed4/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed4/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:14 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:49:14 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed4/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:14 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed4/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed4
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed4/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:49:14 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed4/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:49:14 fsdet.utils.env]: [0mUsing a generated random seed 14724134
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:49:19 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/test_net.py", line 197, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/test_net.py", line 145, in main
+
+    ckpt_file, resume=resume)
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+Split: 3, Seed: 5, Shot: 1
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed5/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed5/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:21 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:49:21 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed5/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:21 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed5/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed5
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed5/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:49:21 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed5/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:49:21 fsdet.utils.env]: [0mUsing a generated random seed 21582460
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:49:26 fsdet.data.build]: [0mRemoved 0 images with no usable annotations. 20 images left.
+
+[32m[03/24 15:49:26 fsdet.data.build]: [0mDistribution of training instances among all 20 categories:
+
+[36m|  category   | #instances   |  category  | #instances   |  category   | #instances   |
+
+|:-----------:|:-------------|:----------:|:-------------|:-----------:|:-------------|
+
+|  aeroplane  | 1            |  bicycle   | 1            |    bird     | 1            |
+
+|   bottle    | 1            |    bus     | 1            |     car     | 1            |
+
+|    chair    | 1            |    cow     | 1            | diningtable | 1            |
+
+|     dog     | 1            |   horse    | 1            |   person    | 1            |
+
+| pottedplant | 1            |   train    | 1            |  tvmonitor  | 1            |
+
+|    boat     | 1            |    cat     | 1            |  motorbike  | 1            |
+
+|    sheep    | 1            |    sofa    | 1            |             |              |
+
+|    total    | 20           |            |              |             |              |[0m
+
+[32m[03/24 15:49:26 fsdet.data.detection_utils]: [0mTransformGens used in training: [ResizeShortestEdge(short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800), max_size=1333, sample_style='choice'), RandomFlip()]
+
+[32m[03/24 15:49:26 fsdet.data.build]: [0mUsing training sampler TrainingSampler
+
+[32m[03/24 15:49:26 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/train_net.py", line 120, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/train_net.py", line 107, in main
+
+    trainer.resume_or_load(resume=args.resume)
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/defaults.py", line 307, in resume_or_load
+
+    self.checkpointer.resume_or_load(self.cfg.MODEL.WEIGHTS, resume=resume).get(
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed5/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed5/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:28 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:49:28 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed5/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:28 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed5/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed5
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed5/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:49:28 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed5/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:49:28 fsdet.utils.env]: [0mUsing a generated random seed 28947921
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:49:33 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/test_net.py", line 197, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/test_net.py", line 145, in main
+
+    ckpt_file, resume=resume)
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+Split: 3, Seed: 6, Shot: 1
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed6/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed6/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:35 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:49:35 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed6/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:35 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed6/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed6
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed6/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:49:35 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed6/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:49:35 fsdet.utils.env]: [0mUsing a generated random seed 35681830
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:49:40 fsdet.data.build]: [0mRemoved 0 images with no usable annotations. 20 images left.
+
+[32m[03/24 15:49:40 fsdet.data.build]: [0mDistribution of training instances among all 20 categories:
+
+[36m|  category   | #instances   |  category  | #instances   |  category   | #instances   |
+
+|:-----------:|:-------------|:----------:|:-------------|:-----------:|:-------------|
+
+|  aeroplane  | 1            |  bicycle   | 1            |    bird     | 1            |
+
+|   bottle    | 1            |    bus     | 1            |     car     | 1            |
+
+|    chair    | 1            |    cow     | 1            | diningtable | 1            |
+
+|     dog     | 1            |   horse    | 1            |   person    | 1            |
+
+| pottedplant | 1            |   train    | 1            |  tvmonitor  | 1            |
+
+|    boat     | 1            |    cat     | 1            |  motorbike  | 1            |
+
+|    sheep    | 1            |    sofa    | 1            |             |              |
+
+|    total    | 20           |            |              |             |              |[0m
+
+[32m[03/24 15:49:40 fsdet.data.detection_utils]: [0mTransformGens used in training: [ResizeShortestEdge(short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800), max_size=1333, sample_style='choice'), RandomFlip()]
+
+[32m[03/24 15:49:40 fsdet.data.build]: [0mUsing training sampler TrainingSampler
+
+[32m[03/24 15:49:41 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/train_net.py", line 120, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/train_net.py", line 107, in main
+
+    trainer.resume_or_load(resume=args.resume)
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/defaults.py", line 307, in resume_or_load
+
+    self.checkpointer.resume_or_load(self.cfg.MODEL.WEIGHTS, resume=resume).get(
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed6/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed6/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:42 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:49:42 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed6/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:42 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed6/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed6
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed6/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:49:42 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed6/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:49:42 fsdet.utils.env]: [0mUsing a generated random seed 43037481
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:49:47 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/test_net.py", line 197, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/test_net.py", line 145, in main
+
+    ckpt_file, resume=resume)
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+Split: 3, Seed: 7, Shot: 1
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed7/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed7/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:49 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:49:49 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed7/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:49 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed7/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed7
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed7/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:49:49 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed7/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:49:49 fsdet.utils.env]: [0mUsing a generated random seed 49844182
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:49:54 fsdet.data.build]: [0mRemoved 0 images with no usable annotations. 20 images left.
+
+[32m[03/24 15:49:54 fsdet.data.build]: [0mDistribution of training instances among all 20 categories:
+
+[36m|  category   | #instances   |  category  | #instances   |  category   | #instances   |
+
+|:-----------:|:-------------|:----------:|:-------------|:-----------:|:-------------|
+
+|  aeroplane  | 1            |  bicycle   | 1            |    bird     | 1            |
+
+|   bottle    | 1            |    bus     | 1            |     car     | 1            |
+
+|    chair    | 1            |    cow     | 1            | diningtable | 1            |
+
+|     dog     | 1            |   horse    | 1            |   person    | 1            |
+
+| pottedplant | 1            |   train    | 1            |  tvmonitor  | 1            |
+
+|    boat     | 1            |    cat     | 1            |  motorbike  | 1            |
+
+|    sheep    | 1            |    sofa    | 1            |             |              |
+
+|    total    | 20           |            |              |             |              |[0m
+
+[32m[03/24 15:49:54 fsdet.data.detection_utils]: [0mTransformGens used in training: [ResizeShortestEdge(short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800), max_size=1333, sample_style='choice'), RandomFlip()]
+
+[32m[03/24 15:49:54 fsdet.data.build]: [0mUsing training sampler TrainingSampler
+
+[32m[03/24 15:49:55 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/train_net.py", line 120, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/train_net.py", line 107, in main
+
+    trainer.resume_or_load(resume=args.resume)
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/defaults.py", line 307, in resume_or_load
+
+    self.checkpointer.resume_or_load(self.cfg.MODEL.WEIGHTS, resume=resume).get(
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed7/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed7/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:57 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:49:57 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed7/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:49:57 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed7/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed7
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed7/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:49:57 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed7/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:49:57 fsdet.utils.env]: [0mUsing a generated random seed 57114972
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:50:02 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/test_net.py", line 197, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/test_net.py", line 145, in main
+
+    ckpt_file, resume=resume)
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+Split: 3, Seed: 8, Shot: 1
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed8/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed8/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:50:03 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:50:03 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed8/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:50:03 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed8/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed8
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed8/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:50:03 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed8/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:50:03 fsdet.utils.env]: [0mUsing a generated random seed 3919344
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:50:08 fsdet.data.build]: [0mRemoved 0 images with no usable annotations. 20 images left.
+
+[32m[03/24 15:50:08 fsdet.data.build]: [0mDistribution of training instances among all 20 categories:
+
+[36m|  category   | #instances   |  category  | #instances   |  category   | #instances   |
+
+|:-----------:|:-------------|:----------:|:-------------|:-----------:|:-------------|
+
+|  aeroplane  | 1            |  bicycle   | 1            |    bird     | 1            |
+
+|   bottle    | 1            |    bus     | 1            |     car     | 1            |
+
+|    chair    | 1            |    cow     | 1            | diningtable | 1            |
+
+|     dog     | 1            |   horse    | 1            |   person    | 1            |
+
+| pottedplant | 1            |   train    | 1            |  tvmonitor  | 1            |
+
+|    boat     | 1            |    cat     | 1            |  motorbike  | 1            |
+
+|    sheep    | 1            |    sofa    | 1            |             |              |
+
+|    total    | 20           |            |              |             |              |[0m
+
+[32m[03/24 15:50:08 fsdet.data.detection_utils]: [0mTransformGens used in training: [ResizeShortestEdge(short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800), max_size=1333, sample_style='choice'), RandomFlip()]
+
+[32m[03/24 15:50:08 fsdet.data.build]: [0mUsing training sampler TrainingSampler
+
+[32m[03/24 15:50:09 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/train_net.py", line 120, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/train_net.py", line 107, in main
+
+    trainer.resume_or_load(resume=args.resume)
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/defaults.py", line 307, in resume_or_load
+
+    self.checkpointer.resume_or_load(self.cfg.MODEL.WEIGHTS, resume=resume).get(
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed8/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed8/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:50:11 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:50:11 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed8/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:50:11 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed8/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed8
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed8/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:50:11 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed8/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:50:11 fsdet.utils.env]: [0mUsing a generated random seed 11326446
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:50:16 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/test_net.py", line 197, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/test_net.py", line 145, in main
+
+    ckpt_file, resume=resume)
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+Split: 3, Seed: 9, Shot: 1
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed9/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed9/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:50:18 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:50:18 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed9/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:50:18 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed9/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed9
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed9/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:50:18 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed9/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:50:18 fsdet.utils.env]: [0mUsing a generated random seed 18177440
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:50:23 fsdet.data.build]: [0mRemoved 0 images with no usable annotations. 20 images left.
+
+[32m[03/24 15:50:23 fsdet.data.build]: [0mDistribution of training instances among all 20 categories:
+
+[36m|  category   | #instances   |  category  | #instances   |  category   | #instances   |
+
+|:-----------:|:-------------|:----------:|:-------------|:-----------:|:-------------|
+
+|  aeroplane  | 1            |  bicycle   | 1            |    bird     | 1            |
+
+|   bottle    | 1            |    bus     | 1            |     car     | 1            |
+
+|    chair    | 1            |    cow     | 1            | diningtable | 1            |
+
+|     dog     | 1            |   horse    | 1            |   person    | 1            |
+
+| pottedplant | 1            |   train    | 1            |  tvmonitor  | 1            |
+
+|    boat     | 1            |    cat     | 1            |  motorbike  | 1            |
+
+|    sheep    | 1            |    sofa    | 1            |             |              |
+
+|    total    | 20           |            |              |             |              |[0m
+
+[32m[03/24 15:50:23 fsdet.data.detection_utils]: [0mTransformGens used in training: [ResizeShortestEdge(short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800), max_size=1333, sample_style='choice'), RandomFlip()]
+
+[32m[03/24 15:50:23 fsdet.data.build]: [0mUsing training sampler TrainingSampler
+
+[32m[03/24 15:50:23 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/train_net.py", line 120, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/train_net.py", line 107, in main
+
+    trainer.resume_or_load(resume=args.resume)
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/defaults.py", line 307, in resume_or_load
+
+    self.checkpointer.resume_or_load(self.cfg.MODEL.WEIGHTS, resume=resume).get(
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+
+** fvcore version of PathManager will be deprecated soon. **
+
+** Please migrate to the version in iopath repo. **
+
+https://github.com/facebookresearch/iopath 
+
+
+
+Loading config ./configs/PascalVOC-detection/split3/seed9/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+
+Command Line Args: Namespace(config_file='./configs/PascalVOC-detection/split3/seed9/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:50:25 fsdet]: [0mRank of current process: 0. World size: 1
+
+[32m[03/24 15:50:25 fsdet]: [0mCommand line arguments: Namespace(config_file='./configs/PascalVOC-detection/split3/seed9/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='auto', end_iter=-1, eval_all=False, eval_during_train=False, eval_iter=-1, eval_only=True, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=True, start_iter=-1)
+
+[32m[03/24 15:50:25 fsdet]: [0mContents of args.config_file=./configs/PascalVOC-detection/split3/seed9/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+
+DATASETS:
+
+  TEST: !!python/tuple
+
+  - voc_2007_test_all3
+
+  TRAIN: !!python/tuple
+
+  - voc_2007_trainval_all3_1shot_seed9
+
+INPUT:
+
+  MIN_SIZE_TEST: 800
+
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+
+MODEL:
+
+  BACKBONE:
+
+    FREEZE: true
+
+  MASK_ON: false
+
+  PROPOSAL_GENERATOR:
+
+    FREEZE: true
+
+  RESNETS:
+
+    DEPTH: 101
+
+  ROI_HEADS:
+
+    FREEZE_FEAT: true
+
+    NUM_CLASSES: 20
+
+    OUTPUT_LAYER: CosineSimOutputLayers
+
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+OUTPUT_DIR: ./checkpoints/voc/faster_rcnn/seed9/faster_rcnn_R_101_FPN_ft_all3_1shot
+
+SOLVER:
+
+  BASE_LR: 0.001
+
+  CHECKPOINT_PERIOD: 400
+
+  IMS_PER_BATCH: 16
+
+  MAX_ITER: 4000
+
+  STEPS: !!python/tuple
+
+  - 3500
+
+  WARMUP_ITERS: 0
+
+_BASE_: ../../../Base-RCNN-FPN.yaml
+
+
+
+[32m[03/24 15:50:25 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/seed9/faster_rcnn_R_101_FPN_ft_all3_1shot/config.yaml
+
+[32m[03/24 15:50:25 fsdet.utils.env]: [0mUsing a generated random seed 25538784
+
+froze backbone parameters
+
+froze proposal generator parameters
+
+froze roi_box_head parameters
+
+[32m[03/24 15:50:30 fvcore.common.checkpoint]: [0mLoading checkpoint from checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+
+Traceback (most recent call last):
+
+  File "tools/test_net.py", line 197, in <module>
+
+    args=(args,),
+
+  File "/home/ubuntu/fsodet-run/fsdet/engine/launch.py", line 52, in launch
+
+    main_func(*args)
+
+  File "tools/test_net.py", line 145, in main
+
+    ckpt_file, resume=resume)
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 215, in resume_or_load
+
+    return self.load(path, checkpointables=[])
+
+  File "/home/ubuntu/anaconda3/lib/python3.7/site-packages/fvcore/common/checkpoint.py", line 141, in load
+
+    assert os.path.isfile(path), "Checkpoint {} not found!".format(path)
+
+AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
+

@@ -1,3 +1,13 @@
 model_final.pth
 build/
 __pycache__
+checkpoints/
+.ipynb_checkpoints/
+.vscode/
+datasets/
+*.jpg
+*.txt
+*.xml
+*.zip
+*.pth
+*.so

@@ -1,0 +1,204 @@
+    1  df -h
+    2  ls
+    3  pip install -r requirements.txt 
+    4  python setup.py build develop
+    5  cd datasets/
+    6  ls
+    7  wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=10tCUhwy6_fD1g3tEDq-kuhOjNKRJvtE_' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=10tCUhwy6_fD1g3tEDq-kuhOjNKRJvtE_" -O VOCtrainval_11-May-2012.tar && rm -rf /tmp/cookies.txt
+    8  cd data
+    9  cd datasets/
+   10  wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1--jiWOUQKtTNT6N5lQjTJbIS6WFXfCcA' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1--jiWOUQKtTNT6N5lQjTJbIS6WFXfCcA" -O VOCtrainval_06-Nov-2007.tar && rm -rf /tmp/cookies.txt
+   11  tar -xvf VOCtrainval_06-Nov-2007.tar
+   12  tar -xvf VOCtrainval_11-May-2012.tar
+   13  ls -ltr
+   14  cd ..
+   15  python datasets/prepare_voc_few_shot.py
+   16  pwd
+   17  mv datasets/VOCdevkit/VOC2007 datasets/
+   18  mv datasets/VOCdevkit/VOC2012 datasets/
+   19  python datasets/prepare_voc_few_shot.py
+   20  python -m tools.train_net --num-gpus 1 --config-file configs/PascalVOC-detection/split1/faster_rcnn_R_101_base1.yaml
+   21  python -m tools.train_net --num-gpus 1 --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_base3.yaml
+   22  python3 -m tools.run_experiments --num-gpus 8 \
+   23  python3 -m tools.run_experiments --num-gpus 1 --shots 1--seeds 0 30 --split 3
+   24  python3 -m tools.run_experiments --num-gpus 1 --shots 1 --seeds 0 30 --split 3
+   25  df -h
+   26  cd checkpoints/
+   27  cd ../..
+   28  cd fsodet-run/
+   29  python fsdet/checkpoint/c2_model_loading.py 
+   30  python fsdet/checkpoint/catalog.py 
+   31  python fsdet/checkpoint/detection_checkpoint.py 
+   32  python fsdet/checkpoint/__init__.py 
+   33  python fsdet/checkpoint
+   34  cd checkpoints/
+   35  cd voc/
+   36  ls
+   37  cd faster_rcnn/
+   38  cd ../..
+   39  cd ..
+   40  wget -r -np -R "index.html*" http://dl.yf.io/fs-det/models/voc/split3/base_model/
+   41  wget -r -np -R "index.html*" http://dl.yf.io/fs-det/models/voc/split3/FRCN%2Bft-full_1shot/
+   42  wget -r -np -R "index.html*" http://dl.yf.io/fs-det/models/voc/split3/tfa_cos_1shot/
+   43  wget -r -np -R "index.html*" http://dl.yf.io/fs-det/models/voc/split3/tfa_fc_1shot/
+   44  df -h
+   45  ls
+   46  jupyter
+   47  jupyter-notebook
+   48  python tools/test_net.py --num-gpus 1         --config-file configs/PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_all1_1shot.yaml         --eval-only
+   49  python tools/run_experiments.py --num-gpus 1         --shots 1 --seeds 0 10--split 3
+   50  python tools/run_experiments.py --num-gpus 1         --shots 1 --seeds 0 10 --split 3
+   51  python tools/run_experiments.py --num-gpus 1         --shots 1 --seeds 0 10 --split 3 >>logs_run_experiment.py
+   52  python datasets/prepare_
+   53  python datasets/prepare_voc_few_shot.py 
+   54  python tools/train_net.py 
+   55  rm datasets/VOCtrainval_06-Nov-2007.tar 
+   56  rm datasets/VOCtrainval_11-May-2012.tar 
+   57  source /home/ubuntu/anaconda3/bin/activate
+   58  conda activate pytorch_latest_p37
+   59  conda deactivate
+   60  cat /proc/sys/fs/inotify/max_user_watches
+   61  python tools/ckpt_surgery.py         --src1 dl.yf.io/fs-det/models/voc/split3/base_model/model_final.pth         --method randinit         --save-dir checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3
+   62  python tools/ckpt_surgery.py         --src1 dl.yf.io/fs-det/models/voc/split3/base_model/model_final.pth         --method remove         --save-dir checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3
+   63  python tools/train_net.py --num-gpus 1         --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml         --opts MODEL.WEIGHTS checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3/model_reset_surgery.pth
+   64  python tools/train_net.py --num-gpus 1 --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml --opts MODEL.WEIGHTS checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3/model_reset_surgery.pth
+   65  cat /proc/sys/fs/inotify/max_user_watches
+   66  fs.inotify.max_user_watches=524288
+   67  vi /etc/sysctl.conf
+   68  sudo vi /etc/systcl.cong
+   69  sudo vi /etc/sysctl.conf 
+   70  sudo sysctl -p
+   71  python tools/train_net.py --num-gpus 1 --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml opts MODEL.WEIGHTS checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3/model_reset_surgery.pth
+   72  python tools/train_net.py --num-gpus 1 --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml MODEL.WEIGHTS checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3/model_reset_surgery.pth
+   73  htop
+   74  top
+   75  source /home/ubuntu/anaconda3/bin/activate
+   76  conda activate pytorch_latest_p37
+   77  watch -n 2 nvidia-smi
+   78  cd datasets/
+   79  ls
+   80  source /home/ubuntu/anaconda3/bin/activate
+   81  conda activate pytorch_latest_p37
+   82  conda deactivate
+   83  mkdir coco
+   84  cd coco
+   85  wget -r -np -R "index.html*"  http://dl.yf.io/fs-det/datasets/cocosplit/
+   86  cp datasets/coco/dl.yf.io/fs-det/datasets/* datasets/
+   87  cd ../..
+   88  cp datasets/coco/dl.yf.io/fs-det/datasets/* datasets/
+   89  cp -r datasets/coco/dl.yf.io/fs-det/datasets/* datasets/
+   90  cp -r datasets/coco/dl.yf.io/fs-det/datasets datasets/
+   91  rm -rf datasets/coco/dl.yf.io/fs-det/datasets/cocosplit
+   92  python datasets/prepare_coco_few_shot.py 
+   93  source /home/ubuntu/anaconda3/bin/activate
+   94  conda activate pytorch_latest_p37
+   95  conda deactivate
+   96  clear
+   97  cd datasets/
+   98  cd cocosplit/
+   99  ls
+  100  ls -ltr |wc -l
+  101  ls ../.. -ltr|wc -l
+  102  ls ../../cocosplit/ -ltr|wc -l
+  103  wc -l
+  104  ls -ltr |wc -l
+  105  cd ..
+  106  ls
+  107  rm -rf cocosplit/
+  108  cd ..
+  109  ls datasets/
+  110  cd ..
+  111  rm datasets/
+  112  rmdir datasets/
+  113  cd datasets/
+  114  ls
+  115  cd datasets/
+  116  ls
+  117  cd ..
+  118  rmdir datasets/
+  119  ls
+  120  unzip Aquarium\ Combined.v2-raw-1024.voc.zip 
+  121  lsunz
+  122  cd datasets/
+  123  ls
+  124  unzip Aquarium\ Combined.v2-raw-1024.voc.zip 
+  125  ls
+  126  mkdi Aquarium
+  127  mkdir Aquarium
+  128  ls
+  129  cp train Aquarium
+  130  cp -r train Aquarium
+  131  ls
+  132  ls Aquarium
+  133  cd train/
+  134  ls
+  135  cd ../..
+  136  cd datasets/
+  137  ls
+  138  cp -r test Aquarium
+  139  cp -r valid/ Aquarium
+  140  rm -rf test train valid
+  141  ls -tlr
+  142  cd Aquarium/
+  143  ls
+  144  cd train
+  145  ls *.xml
+  146  mkdir Annotations
+  147  mv *.xml Annotations/
+  148  ls -ltr
+  149  mkdir JPEGImages 
+  150  mv *.jpg JPEGImages/
+  151  ls -ltr
+  152  cd ../.
+  153  cd ../..
+  154  cd datasets/
+  155  ls
+  156  rm README.roboflow.txt 
+  157  rm README.dataset.txt 
+  158  ls -ltr
+  159  ls
+  160  unzip Aquarium_VOC
+  161  unzip Aquarium_VOC.zip
+  162  cd ..
+  163  source /home/ubuntu/anaconda3/bin/activate
+  164  conda activate pytorch_latest_p37
+  165  /home/ubuntu/anaconda3/envs/pytorch_latest_p37/bin/python /home/ubuntu/fsodet-run/rakshit.py
+  166  mv /home/ubuntu/anaconda3/envs/pytorch_latest_p37/bin/python /home/ubuntu/fsodet-run/datasets/prepare_aquarium_voc_few_shot.pydatasets/prepare_voc_few_shot copy.py
+  167  conda deactivate
+  168  python datasets/prepare_aquarium_voc_few_shot.py 
+  169  /home/ubuntu/anaconda3/envs/pytorch_latest_p37/bin/python /home/ubuntu/fsodet-run/datasets/prepare_aquarium_voc_few_shot.py
+  170  python datasets/prepare_aquarium_voc_few_shot.py 
+  171  cd datasets/
+  172  clear
+  173  ls 
+  174  rm -rf aquarium_conda\ vocsplit/
+  175  ls -ltr
+  176  mv vocsplit/ vocsplit_official
+  177  mv aquarium_vocsplit/ vocsplit_official/
+  178  mv vocsplit_official/aquarium_vocsplit/ /
+  179  mv vocsplit_official/aquarium_vocsplit/ ./
+  180  ls
+  181  mv aquarium_vocsplit/ vocsplit
+  182  cd ..
+  183  python voc_annotations_jpegs.py 
+  184  cd datasets/Aquarium
+  185  cd ..
+  186  cd Aquarium_VOC/
+  187  ls
+  188  cd JPEGImages/
+  189  ls
+  190  ls -ltr
+  191  cd ../Annotations/
+  192  ls -ltr
+  193  cd ../../../
+  194  python voc_annotations_jpegs.py 
+  195  source /home/ubuntu/anaconda3/bin/activate
+  196  conda activate pytorch_latest_p37
+  197  conda deactivate
+  198  conda deativate
+  199  conda deactivate
+  200  clear
+  201  python tools/ckpt_surgery.py         --src1 dl.yf.io/fs-det/models/voc/split3/base_model/model_final.pth         --method randinit         --save-dir checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3
+  202  rm -rf checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_ft_normalized_all3_1shot_randnovel
+  203  python tools/train_net.py --num-gpus 1         --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml         --eval-during-train
+  204  history >>commands.log

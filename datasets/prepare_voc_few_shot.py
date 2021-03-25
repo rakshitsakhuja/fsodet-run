@@ -29,6 +29,7 @@ def generate_seeds(args):
         with PathManager.open(data_file) as f:
             fileids = np.loadtxt(f, dtype=np.str).tolist()
         data.extend(fileids)
+    # print(data)
     for fileid in data:
         year = "2012" if "_" in fileid else "2007"
         dirname = os.path.join("datasets", "VOC{}".format(year))
@@ -40,9 +41,11 @@ def generate_seeds(args):
             clses.append(cls)
         for cls in set(clses):
             data_per_cat[cls].append(anno_file)
+    # print('data_per_cat:',data_per_cat,'clses',clses)
 
     result = {cls: {} for cls in data_per_cat.keys()}
     shots = [1, 2, 3, 5, 10]
+    # print ('result',result)
     for i in range(args.seeds[0], args.seeds[1]):
         random.seed(i)
         for c in data_per_cat.keys():
@@ -67,9 +70,12 @@ def generate_seeds(args):
         save_path = 'datasets/vocsplit/seed{}'.format(i)
         os.makedirs(save_path, exist_ok=True)
         for c in result.keys():
+            # print('result_keys:',c)
             for shot in result[c].keys():
+                # print('result[c].keys():',shot)
                 filename = 'box_{}shot_{}_train.txt'.format(shot, c)
                 with open(os.path.join(save_path, filename), 'w') as fp:
+                    print('Writing File at ',os.path.join(save_path, filename))
                     fp.write('\n'.join(result[c][shot])+'\n')
 
 

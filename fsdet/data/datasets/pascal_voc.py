@@ -14,11 +14,12 @@ __all__ = ["register_pascal_voc"]
 
 
 # fmt: off
-CLASS_NAMES = [
-    "aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat",
-    "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person",
-    "pottedplant", "sheep", "sofa", "train", "tvmonitor",
-]
+# CLASS_NAMES = [
+#     "aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat",
+#     "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person",
+#     "pottedplant", "sheep", "sofa", "train", "tvmonitor",
+# ]
+CLASS_NAMES = ['fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish']
 # fmt: on
 
 

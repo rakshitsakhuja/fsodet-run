@@ -5,7 +5,7 @@ checkpoints/
 .ipynb_checkpoints/
 .vscode/
 datasets/
-*.jpg
+
 *.txt
 *.xml
 *.zip

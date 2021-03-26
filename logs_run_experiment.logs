@@ -2666,3 +2666,94 @@ Traceback (most recent call last):
 
 AssertionError: Checkpoint checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth not found!
 
+---------------
+---------------
+---------------
+---------------
+Command Line Args: Namespace(config_file='configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='tcp://127.0.0.1:50152', end_iter=-1, eval_all=False, eval_during_train=True, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=False, start_iter=-1)
+DATASETS:
+  TEST: ("aquarium_voc_test_all3",)
+  TRAIN: ("aquarium_voc_trainval_all3_1shot",)
+INPUT:
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+MODEL:
+  ANCHOR_GENERATOR:
+    ASPECT_RATIOS: [[0.5, 1.0, 2.0]]
+    SIZES: [[32], [64], [128], [256], [512]]
+  BACKBONE:
+    FREEZE: True
+    NAME: build_resnet_fpn_backbone
+  FPN:
+    IN_FEATURES: ['res2', 'res3', 'res4', 'res5']
+  MASK_ON: False
+  META_ARCHITECTURE: GeneralizedRCNN
+  PROPOSAL_GENERATOR:
+    FREEZE: True
+  RESNETS:
+    DEPTH: 101
+    OUT_FEATURES: ['res2', 'res3', 'res4', 'res5']
+  ROI_BOX_HEAD:
+    NAME: FastRCNNConvFCHead
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+  ROI_HEADS:
+    FREEZE_FEAT: True
+    IN_FEATURES: ['p2', 'p3', 'p4', 'p5']
+    NAME: StandardROIHeads
+    NUM_CLASSES: 20
+    OUTPUT_LAYER: CosineSimOutputLayers
+  RPN:
+    IN_FEATURES: ['p2', 'p3', 'p4', 'p5', 'p6']
+    POST_NMS_TOPK_TEST: 1000
+    POST_NMS_TOPK_TRAIN: 1000
+    PRE_NMS_TOPK_TEST: 1000
+    PRE_NMS_TOPK_TRAIN: 2000
+  WEIGHTS: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth
+OUTPUT_DIR: checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_ft_normalized_all3_1shot_randnovel
+SOLVER:
+  BASE_LR: 0.001
+  CHECKPOINT_PERIOD: 200
+  IMS_PER_BATCH: 32
+  MAX_ITER: 2000
+  STEPS: (3000,)
+  WARMUP_ITERS: 0
+VERSION: 2
+[32m[03/26 13:53:40 fsdet]: [0mRank of current process: 0. World size: 1
+[32m[03/26 13:53:40 fsdet]: [0mCommand line arguments: Namespace(config_file='configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml', dist_url='tcp://127.0.0.1:50152', end_iter=-1, eval_all=False, eval_during_train=True, eval_iter=-1, eval_only=False, machine_rank=0, num_gpus=1, num_machines=1, opts=[], resume=False, start_iter=-1)
+[32m[03/26 13:53:40 fsdet]: [0mContents of args.config_file=configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml:
+_BASE_: "../../Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 101
+  ROI_HEADS:
+    NUM_CLASSES: 20
+    OUTPUT_LAYER: "CosineSimOutputLayers"
+    FREEZE_FEAT: True
+  BACKBONE:
+    FREEZE: True
+  PROPOSAL_GENERATOR:
+    FREEZE: True
+INPUT:
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+  MIN_SIZE_TEST: 800
+DATASETS:
+  # TRAIN: ('voc_2007_trainval_all3_1shot',)
+  # TEST: ('voc_2007_test_all3',)
+  TRAIN: ("aquarium_voc_trainval_all3_1shot",)
+  TEST: ("aquarium_voc_test_all3",)
+SOLVER:
+  IMS_PER_BATCH: 32
+  BASE_LR: 0.001
+  STEPS: (3000,)
+  MAX_ITER: 2000
+  CHECKPOINT_PERIOD: 200
+  WARMUP_ITERS: 0
+OUTPUT_DIR: "checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_ft_normalized_all3_1shot_randnovel"
+[32m[03/26 13:53:40 fsdet]: [0mFull config saved to /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_ft_normalized_all3_1shot_randnovel/config.yaml
+[32m[03/26 13:53:40 fsdet.utils.env]: [0mUsing a generated random seed 40227323
+froze backbone parameters
+froze proposal generator parameters
+froze roi_box_head parameters

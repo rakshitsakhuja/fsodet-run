@@ -1,7 +1,7 @@
 import os
 import random
  
-root_dir = 'datasets/Aquarium_VOC/'
+root_dir = 'datasets/aquariumvoc/'
  
 ## 0.7train 0.1val 0.2test
 trainval_percent = 0.8
@@ -72,10 +72,10 @@ fval.close()
 
 
 
-python tools/ckpt_surgery.py \
-        --src1 dl.yf.io/fs-det/models/voc/split3/base_model/model_final.pth \
-        --method randinit \
-        --save-dir checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3
+# python tools/ckpt_surgery.py \
+#         --src1 dl.yf.io/fs-det/models/voc/split3/base_model/model_final.pth \
+#         --method randinit \
+#         --save-dir checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3
 
 # python tools/ckpt_surgery.py \
 #         --src1 dl.yf.io/fs-det/models/voc/split3/base_model/model_final.pth \
@@ -83,9 +83,11 @@ python tools/ckpt_surgery.py \
 #         --save-dir checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3
 
 
-python tools/train_net.py --num-gpus 1 \
-        --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml \
-        --eval-during-train
+# python tools/train_net.py --num-gpus 1 \
+#         --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml \
+#         --eval-during-train
+#         aquarium_voc_trainval_all1_1shot
+#         voc_2007_trainval_all3_1shot
         
 
 

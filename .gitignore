@@ -4,7 +4,12 @@ __pycache__
 checkpoints/
 .ipynb_checkpoints/
 .vscode/
-datasets/
+datasets/coco/
+datasets/cocosplit/
+datasets/VOC2007
+datasets/VOC2012
+datasets/vocsplit_official
+datasets/Aquarium
 
 *.txt
 *.xml

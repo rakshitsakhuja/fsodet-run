@@ -93,4 +93,4 @@ fval.close()
 
 
 
-# python tools/train_net.py --num-gpus 1 --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml MODEL.WEIGHTS checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3/model_reset_surgery.pth
+python tools/train_net.py --num-gpus 1 --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml MODEL.WEIGHTS checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3/model_reset_surgery.pth

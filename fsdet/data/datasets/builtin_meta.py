@@ -180,7 +180,8 @@ PASCAL_VOC_ALL_CATEGORIES = {
 PASCAL_VOC_NOVEL_CATEGORIES = {
     1: ['bird', 'bus', 'cow', 'motorbike', 'sofa'],
     2: ['aeroplane', 'bottle', 'cow', 'horse', 'sofa'],
-    3: ['boat', 'cat', 'motorbike', 'sheep', 'sofa'],
+    # 3: ['boat', 'cat', 'motorbike', 'sheep', 'sofa'],
+    3:['fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish']
 }
 
 PASCAL_VOC_BASE_CATEGORIES = {

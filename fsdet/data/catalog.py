@@ -4,7 +4,7 @@ import logging
 import types
 from typing import List
 
-from fsdet.utils.logger import log_first_n
+# from fsdet.utils.logger import log_first_n
 
 __all__ = ["DatasetCatalog", "MetadataCatalog"]
 
@@ -55,10 +55,15 @@ class DatasetCatalog(object):
             f = DatasetCatalog._REGISTERED[name]
         except KeyError:
             raise KeyError(
-                "Dataset '{}' is not registered! Available datasets are: {}".format(
-                    name, ", ".join(DatasetCatalog._REGISTERED.keys())
+                "Dataset '{}' is not registered!".format(
+                    name)
                 )
-            )
+            
+            # raise KeyError(
+            #     "Dataset '{}' is not registered! Available datasets are: {}".format(
+            #         name, ", ".join(DatasetCatalog._REGISTERED.keys())
+            #     )
+            # )
         return f()
 
     @staticmethod
@@ -209,3 +214,7 @@ metadata to each split (now called dataset) separately!
         else:
             m = MetadataCatalog._NAME_TO_META[name] = Metadata(name=name)
             return m
+
+# print(DatasetCatalog.get('coco_2014_train').dirname)
+
+

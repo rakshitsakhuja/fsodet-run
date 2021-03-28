@@ -57,6 +57,7 @@ def run_exp(cfg, configs):
     # Train
     output_dir = configs['OUTPUT_DIR']
     model_path = os.path.join(args.root, output_dir, 'model_final.pth')
+    print('model_path',model_path)
     if not os.path.exists(model_path):
         train_cmd = 'python tools/train_net.py --dist-url auto --num-gpus {} ' \
                     '--config-file {} --resume'.format(args.num_gpus, cfg)
@@ -125,8 +126,10 @@ def get_config(seed, shot):
         }
         split = 'split{}'.format(args.split)
         mode = 'all{}'.format(args.split)
-        temp_split = 'split1'
-        temp_mode = 'all1'
+        # temp_split = 'split1'
+        # temp_mode = 'all1'
+        temp_split=split
+        temp_mode = mode
 
         config_dir = 'configs/PascalVOC-detection'
         ckpt_dir = 'checkpoints/voc/faster_rcnn'
@@ -140,20 +143,28 @@ def get_config(seed, shot):
         temp_split, 'faster_rcnn_R_101_FPN_ft{}_{}_1shot{}'.format(
             fc, temp_mode, unfreeze)
     )
+    print('temp_file:', temp)
     config = os.path.join(args.root, config_dir, temp + '.yaml')
+    print('config_file:', config)
 
     prefix = 'faster_rcnn_R_101_FPN_ft{}_{}_{}shot{}{}'.format(
         fc, mode, shot, unfreeze, args.suffix)
+    print('prefix_file:', prefix)
 
     output_dir = os.path.join(args.root, ckpt_dir, seed_str)
+    print('output_dir',output_dir)
     os.makedirs(output_dir, exist_ok=True)
+    
     save_dir = os.path.join(
         args.root, config_dir, split, seed_str,
     )
+    print('save_dir',save_dir)
     os.makedirs(save_dir, exist_ok=True)
     save_file = os.path.join(save_dir, prefix + '.yaml')
+    print('save_file' , save_file)
 
     configs = load_yaml_file(config)
+    print('reading from this config file ',config)
     configs['_BASE_'] = base_cfg
     configs['DATASETS']['TRAIN'] = make_tuple(configs['DATASETS']['TRAIN'])
     configs['DATASETS']['TEST'] = make_tuple(configs['DATASETS']['TEST'])

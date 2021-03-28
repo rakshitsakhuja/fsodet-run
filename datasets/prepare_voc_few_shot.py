@@ -25,8 +25,8 @@ def parse_args():
 def generate_seeds(args):
     data = []
     data_per_cat = {c: [] for c in VOC_CLASSES}
-    # for year in [2007, 2012]:
-    for year in [2007]:
+    for year in [2007, 2012]:
+    # for year in [2007]:
         data_file = 'datasets/VOC{}/ImageSets/Main/trainval.txt'.format(year)
         with PathManager.open(data_file) as f:
             fileids = np.loadtxt(f, dtype=np.str).tolist()
@@ -35,8 +35,8 @@ def generate_seeds(args):
     # import sys
     # sys.exit(0)
     for fileid in data:
-        # year = "2012" if "_" in fileid else "2007"
-        year="2007"
+        year = "2012" if "_" in fileid else "2007"
+        # year="2007"
         dirname = os.path.join("datasets", "VOC{}".format(year))
         anno_file = os.path.join(dirname, "Annotations", fileid + ".xml")
         tree = ET.parse(anno_file)
@@ -63,8 +63,8 @@ def generate_seeds(args):
                     if s not in c_data:
                         tree = ET.parse(s)
                         file = tree.find("filename").text
-                        # year = tree.find("folder").text
-                        year = "2007"
+                        year = tree.find("folder").text
+                        # year = "2007"
                         name = 'datasets/VOC{}/JPEGImages/{}'.format(year, file)
                         c_data.append(name)
                         for obj in tree.findall("object"):

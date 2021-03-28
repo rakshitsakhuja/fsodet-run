@@ -48,13 +48,18 @@ def ckpt_surgery(args):
     """
     def surgery(param_name, is_weight, tar_size, ckpt, ckpt2=None):
         weight_name = param_name + ('.weight' if is_weight else '.bias')
+        # print('ckpt',ckpt['model'].keys())
+        print('param',param_name)
+        print('weight_name',weight_name)
         pretrained_weight = ckpt['model'][weight_name]
+        print('pretrained_weight',pretrained_weight)
         prev_cls = pretrained_weight.size(0)
         if 'cls_score' in param_name:
             prev_cls -= 1
         if is_weight:
             feat_size = pretrained_weight.size(1)
             new_weight = torch.rand((tar_size, feat_size))
+            print('new_weight.shape',new_weight.shape)
             torch.nn.init.normal_(new_weight, 0, 0.01)
         else:
             new_weight = torch.zeros(tar_size)
@@ -67,6 +72,9 @@ def ckpt_surgery(args):
                     new_weight[IDMAP[c]*4:(IDMAP[c]+1)*4] = \
                         pretrained_weight[idx*4:(idx+1)*4]
         else:
+            print('new_weight',new_weight.shape)
+            print('pretrained_weight',pretrained_weight.shape)
+            print(prev_cls)
             new_weight[:prev_cls] = pretrained_weight[:prev_cls]
         if 'cls_score' in param_name:
             new_weight[-1] = pretrained_weight[-1]  # bg class
@@ -84,8 +92,15 @@ def combine_ckpts(args):
         if not is_weight and param_name + '.bias' not in ckpt['model']:
             return
         weight_name = param_name + ('.weight' if is_weight else '.bias')
+        print('ckpt',ckpt['model'].keys())
+        print('param_name',param_name)
+        print('weight_name',weight_name)
         pretrained_weight = ckpt['model'][weight_name]
+        print('pretrained_weight',pretrained_weight)
+        print('pretrained_weight.shape',pretrained_weight.shape)
+
         prev_cls = pretrained_weight.size(0)
+        print('prev_cls',prev_cls)
         if 'cls_score' in param_name:
             prev_cls -= 1
         if is_weight:
@@ -93,6 +108,8 @@ def combine_ckpts(args):
             new_weight = torch.rand((tar_size, feat_size))
         else:
             new_weight = torch.zeros(tar_size)
+        print('tar_size,feat_size',tar_size,feat_size)
+        print('new_weight.shape',new_weight.shape)
         if args.coco or args.lvis:
             for i, c in enumerate(BASE_CLASSES):
                 idx = i if args.coco else c
@@ -102,6 +119,7 @@ def combine_ckpts(args):
                     new_weight[IDMAP[c]*4:(IDMAP[c]+1)*4] = \
                         pretrained_weight[idx*4:(idx+1)*4]
         else:
+            print('prev_cls',prev_cls)
             new_weight[:prev_cls] = pretrained_weight[:prev_cls]
 
         ckpt2_weight = ckpt2['model'][weight_name]
@@ -155,8 +173,8 @@ def surgery_loop(args, surgery):
 
     # Surgery
     tar_sizes = [TAR_SIZE + 1, TAR_SIZE * 4]
-    for idx, (param_name, tar_size) in enumerate(zip(args.param_name,
-                                                     tar_sizes)):
+    for idx, (param_name, tar_size) in enumerate(zip(args.param_name,tar_sizes)):
+        print('tar_size',tar_size)
         surgery(param_name, True, tar_size, ckpt, ckpt2)
         surgery(param_name, False, tar_size, ckpt, ckpt2)
 
@@ -180,6 +198,7 @@ def reset_ckpt(ckpt):
 
 if __name__ == '__main__':
     args = parse_args()
+    print(args)
 
     # COCO
     if args.coco:
@@ -243,7 +262,7 @@ if __name__ == '__main__':
         TAR_SIZE = 1230
     else:
         # VOC
-        TAR_SIZE = 20
+        TAR_SIZE = 15
 
     if args.method == 'combine':
         combine_ckpts(args)

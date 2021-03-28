@@ -6,12 +6,14 @@ checkpoints/
 .vscode/
 datasets/coco/
 datasets/cocosplit/
+datasets/merger_splits/
+# datasets/aquarium2007/
 datasets/VOC2007/
 datasets/VOC2007_official/
 datasets/VOC2012_official/
 datasets/vocsplit_official
 datasets/Aquarium
-
+datasets/vocsplit/
 *.txt
 *.xml
 *.zip

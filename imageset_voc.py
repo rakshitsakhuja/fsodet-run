@@ -93,4 +93,38 @@ fval.close()
 
 
 
-python tools/train_net.py --num-gpus 1 --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml MODEL.WEIGHTS checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3/model_reset_surgery.pth
+python tools/train_net.py --num-gpus 1 --config-file configs/PascalVOC-detection/split3/scale_ablation/CUSTOM_faster_rcnn_R_101_FPN_ft_all3_1shot_randnovel_1scale.yaml MODEL.WEIGHTS checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3/model_reset_surgery.pth
+
+
+python tools/ckpt_surgery.py \
+        --src1 checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3/model_reset_surgery.pth \
+        --src2 /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/CUSTOM_faster_rcnn_R_101_FPN_ft_normalized_all3_1shot_randnovel_1scale/model_final.pth \
+        --method combine \
+        --save-dir checkpoints/voc/faster_rcnn/CUSTOM_faster_rcnn_R_101_FPN_all3
+
+
+python3 demo/demo.py --config-file configs/PascalVOC-detection/split3/scale_ablation/CUSTOM_faster_rcnn_R_101_FPN_ft_all3_1shot_randnovel_1scale.yaml --input datasets/Aquarium/train/JPEGImages/IMG_2274_jpeg_jpg.rf.2f319e949748145fb22dcb52bb325a0c.jpg  --output output/ --opts MODEL.WEIGHTS checkpoints/voc/faster_rcnn/CUSTOM_faster_rcnn_R_101_FPN_ft_normalized_all3_1shot_randnovel_1scale/model_final.pth
+        # python tools/ckpt_surgery.py \
+        # --src1 dl.yf.io/fs-det/models/voc/split3/base_model/model_final.pth \
+        # --method randinit \
+        # --save-dir checkpoints/voc/faster_rcnn/CUSTOM_faster_rcnn_R_101_FPN_base3
+
+
+        # python tools/train_net.py --num-gpus 1 \
+        # --config-file configs/PascalVOC-detection/split3/scale_ablation/CUSTOM_faster_rcnn_R_101_FPN_ft_all3_1shot_randnovel_1scale.yaml --eval-during-train
+
+
+python tools/run_experiments.py --num-gpus 1 \
+        --shots 1 2 --seeds 0 4 --split 3
+
+python tools/ckpt_surgery.py \
+        --src1 dl.yf.io/fs-det/models/voc/split3/base_model/model_final.pth \
+        --src2 checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_ft_novel1_1shot/model_final.pth \
+        --method combine \
+        --save-dir checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all1
+
+        python tools/ckpt_surgery.py \
+        --src1 checkpoints/voc/faster_rcnn/CUSTOM_faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth \
+        --src2 /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/CUSTOM_faster_rcnn_R_101_FPN_ft_normalized_all3_1shot_randnovel_1scale/model_final.pth \
+        --method combine \
+        --save-dir checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3

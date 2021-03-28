@@ -64,7 +64,7 @@ class Trainer(DefaultTrainer):
             return PascalVOCDetectionEvaluator(dataset_name)
         if evaluator_type == "lvis":
             return LVISEvaluator(dataset_name, cfg, True, output_folder)
-        if evaluator_type == 'aquarium':
+        if evaluator_type == 'custom_voc':
             return CustomPascalVOCDetectionEvaluator(dataset_name)
 
         if len(evaluator_list) == 0:

@@ -26,16 +26,15 @@ def generate_seeds(args):
     data = []
     data_per_cat = {c: [] for c in VOC_CLASSES}
     # for year in [2007, 2012]:
-    for folder in ['aquariumvoc']:
-        data_file = 'datasets/{}/ImageSets/Main/trainval.txt'.format(folder)
+    for year in [2007]:
+        data_file = 'datasets/aquarium{}/ImageSets/Main/trainval.txt'.format(year)
         with PathManager.open(data_file) as f:
             fileids = np.loadtxt(f, dtype=np.str).tolist()
         data.extend(fileids)
     # print(data)
     for fileid in data:
-        # year = "2012" if "_" in fileid else "2007"
-        year='aquariumvoc'
-        dirname = os.path.join("datasets", "{}".format(year))
+        year="2007"
+        dirname = os.path.join("datasets", "aquarium{}".format(year))
         anno_file = os.path.join(dirname, "Annotations", fileid + ".xml")
         tree = ET.parse(anno_file)
         clses = []
@@ -62,8 +61,8 @@ def generate_seeds(args):
                         tree = ET.parse(s)
                         file = tree.find("filename").text
                         # year = tree.find("folder").text
-                        year = 'aquariumvoc'
-                        name = 'datasets/{}/JPEGImages/{}'.format(year, file)
+                        year = '2007'
+                        name = 'datasets/aquarium{}/JPEGImages/{}'.format(year, file)
                         c_data.append(name)
                         for obj in tree.findall("object"):
                             if obj.find("name").text == c:

@@ -161,9 +161,7 @@ def all_gather(data, group=None):
     max_size = max(size_list)
 
     # receiving Tensor from all ranks
-    tensor_list = [
-        torch.empty((max_size,), dtype=torch.uint8, device=tensor.device) for _ in size_list
-    ]
+    tensor_list = [torch.empty((max_size,), dtype=torch.uint8, device=tensor.device) for _ in size_list]
     dist.all_gather(tensor_list, tensor, group=group)
 
     data_list = []

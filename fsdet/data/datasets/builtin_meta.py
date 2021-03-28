@@ -177,10 +177,27 @@ PASCAL_VOC_ALL_CATEGORIES = {
         'tvmonitor', 'boat', 'cat', 'motorbike', 'sheep', 'sofa'],
 }
 
-PASCAL_VOC_NOVEL_CATEGORIES = {
-    1: ['bird', 'bus', 'cow', 'motorbike', 'sofa'],
-    2: ['aeroplane', 'bottle', 'cow', 'horse', 'sofa'],
-    # 3: ['boat', 'cat', 'motorbike', 'sheep', 'sofa'],
+AQUARIUM_ALL_CATEGORIES = {
+    1: ['aeroplane', 'bicycle', 'boat', 'bottle', 'car', 'cat', 'chair',
+        'diningtable', 'dog', 'horse', 'person', 'pottedplant', 'sheep',
+        'train', 'tvmonitor', 'bird', 'bus', 'cow', 'motorbike', 'sofa','fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],
+    2: ['bicycle', 'bird', 'boat', 'bus', 'car', 'cat', 'chair', 'diningtable',
+        'dog', 'motorbike', 'person', 'pottedplant', 'sheep', 'train',
+        'tvmonitor', 'aeroplane', 'bottle', 'cow', 'horse', 'sofa','fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],
+    3: ['aeroplane', 'bicycle', 'bird', 'bottle', 'bus', 'car', 'chair', 'cow',
+        'diningtable', 'dog', 'horse', 'person', 'pottedplant', 'train',
+        'tvmonitor', 'boat', 'cat', 'motorbike', 'sheep', 'sofa','fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],
+}
+
+# PASCAL_VOC_NOVEL_CATEGORIES = {
+#     1: ['bird', 'bus', 'cow', 'motorbike', 'sofa'],
+#     2: ['aeroplane', 'bottle', 'cow', 'horse', 'sofa'],
+#     3: ['boat', 'cat', 'motorbike', 'sheep', 'sofa']
+# }
+
+AQUARIUM_NOVEL_CATEGORIES= {
+    1:['fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],
+    2:['fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],
     3:['fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish']
 }
 
@@ -265,6 +282,14 @@ def _get_pascal_voc_fewshot_instances_meta():
     }
     return ret
 
+def _get_aquarium_pascal_voc_fewshot_instances_meta():
+    ret = {
+        "thing_classes": AQUARIUM_ALL_CATEGORIES,
+        "novel_classes": AQUARIUM_NOVEL_CATEGORIES,
+        "base_classes": PASCAL_VOC_BASE_CATEGORIES,
+    }
+    return ret
+
 
 def _get_builtin_metadata(dataset_name):
     if dataset_name == "coco":
@@ -277,4 +302,6 @@ def _get_builtin_metadata(dataset_name):
         return _get_lvis_fewshot_instances_meta_v0_5()
     elif dataset_name == "pascal_voc_fewshot":
         return _get_pascal_voc_fewshot_instances_meta()
+    elif dataset_name == "aquarium_fewshot":
+        return _get_aquarium_pascal_voc_fewshot_instances_meta()
     raise KeyError("No built-in metadata for dataset {}".format(dataset_name))

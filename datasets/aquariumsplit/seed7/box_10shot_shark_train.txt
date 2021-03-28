@@ -1,0 +1,8 @@
+datasets/aquarium2007/JPEGImages/IMG_8496_MOV-1_jpg.rf.bfb30108c5b8c7ebd0b92028435ba919.jpg
+datasets/aquarium2007/JPEGImages/IMG_2537_jpeg_jpg.rf.2b9143514d53e64f7a1dd5504ded197a.jpg
+datasets/aquarium2007/JPEGImages/IMG_8572_MOV-0_jpg.rf.1a301d11ffdd3cb15653d44ea193ff1e.jpg
+datasets/aquarium2007/JPEGImages/IMG_2411_jpeg_jpg.rf.f9d90552a05fa166a20d6633bb32e1fa.jpg
+datasets/aquarium2007/JPEGImages/IMG_8581_MOV-4_jpg.rf.1d8182747d4e43163f55b5bdbf36a8af.jpg
+datasets/aquarium2007/JPEGImages/IMG_2612_jpeg_jpg.rf.4d3cb56bf5e65d1f8478142104a25cfb.jpg
+datasets/aquarium2007/JPEGImages/IMG_8412_jpg.rf.a7669aef0d6247193978c21e8581e57f.jpg
+datasets/aquarium2007/JPEGImages/IMG_2426_jpeg_jpg.rf.50808902673305d18d0d44531b5a8bfb.jpg

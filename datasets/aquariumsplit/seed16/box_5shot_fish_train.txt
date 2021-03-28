@@ -1,0 +1,4 @@
+datasets/aquarium2007/JPEGImages/IMG_8545_jpg.rf.ff50b7c81c0f9479325eec03e7ce2191.jpg
+datasets/aquarium2007/JPEGImages/IMG_8376_jpg.rf.f129d46d1c4ae234b8aebe69ea012d64.jpg
+datasets/aquarium2007/JPEGImages/IMG_2439_jpeg_jpg.rf.b716ecc9923088908de67457af446693.jpg
+datasets/aquarium2007/JPEGImages/IMG_8486_jpg.rf.3000bc7c3b4d2df476eea138b9682116.jpg

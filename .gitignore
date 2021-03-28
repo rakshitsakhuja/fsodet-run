@@ -14,8 +14,8 @@ datasets/VOC2012_official/
 datasets/vocsplit_official
 datasets/Aquarium
 datasets/vocsplit/
-*.txt
-*.xml
+# *.txt
+# *.xml
 *.zip
 *.pth
 *.so

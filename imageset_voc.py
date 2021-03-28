@@ -128,3 +128,14 @@ python tools/ckpt_surgery.py \
         --src2 /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/CUSTOM_faster_rcnn_R_101_FPN_ft_normalized_all3_1shot_randnovel_1scale/model_final.pth \
         --method combine \
         --save-dir checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3
+
+
+
+        python tools/ckpt_surgery.py \
+        --src1 /content/drive/MyDrive/FewShotObjectDetection/fsodet-run/dl.yf.io/fs-det/models/voc/split3/base_model/model_final.pth \
+        --method randinit \
+        --save-dir checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3_randinit
+
+
+        python tools/train_net.py --num-gpus 1  \
+        --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml

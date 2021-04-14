@@ -180,13 +180,13 @@ PASCAL_VOC_ALL_CATEGORIES = {
 AQUARIUM_ALL_CATEGORIES = {
     1: ['aeroplane', 'bicycle', 'boat', 'bottle', 'car', 'cat', 'chair',
         'diningtable', 'dog', 'horse', 'person', 'pottedplant', 'sheep',
-        'train', 'tvmonitor', 'bird', 'bus', 'cow', 'motorbike', 'sofa','fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],
+        'train', 'tvmonitor','fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],
     2: ['bicycle', 'bird', 'boat', 'bus', 'car', 'cat', 'chair', 'diningtable',
         'dog', 'motorbike', 'person', 'pottedplant', 'sheep', 'train',
-        'tvmonitor', 'aeroplane', 'bottle', 'cow', 'horse', 'sofa','fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],
+        'tvmonitor','fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],
     3: ['aeroplane', 'bicycle', 'bird', 'bottle', 'bus', 'car', 'chair', 'cow',
         'diningtable', 'dog', 'horse', 'person', 'pottedplant', 'train',
-        'tvmonitor', 'boat', 'cat', 'motorbike', 'sheep', 'sofa','fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],
+        'tvmonitor', 'fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],
 }
 
 # PASCAL_VOC_NOVEL_CATEGORIES = {

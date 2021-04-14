@@ -108,8 +108,8 @@ def combine_ckpts(args):
             new_weight = torch.rand((tar_size, feat_size))
         else:
             new_weight = torch.zeros(tar_size)
-        print('tar_size,feat_size',tar_size,feat_size)
-        print('new_weight.shape',new_weight.shape)
+        # print('tar_size,feat_size',tar_size,feat_size)
+        # print('new_weight.shape',new_weight.shape)
         if args.coco or args.lvis:
             for i, c in enumerate(BASE_CLASSES):
                 idx = i if args.coco else c
@@ -262,9 +262,15 @@ if __name__ == '__main__':
         TAR_SIZE = 1230
     else:
         # VOC
-        TAR_SIZE = 15
+        TAR_SIZE = 22
 
     if args.method == 'combine':
         combine_ckpts(args)
     else:
         ckpt_surgery(args)
+
+
+
+# python tools/train_net.py --num-gpus 1          --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_10shot.yaml --eval-only 
+
+# cp checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_ft_normalized_all3_10shot_randnovel/model_0000999.pth checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_ft_normalized_all3_10shot_randnovel/model_final.pth

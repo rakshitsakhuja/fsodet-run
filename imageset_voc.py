@@ -90,16 +90,15 @@ fval.close()
 #         voc_2007_trainval_all3_1shot
         
 
-!python tools/train_net.py --num-gpus 1  \
-        --config-file configs/PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_10shot.yaml
+
 
 
 python tools/train_net.py --num-gpus 1 --config-file configs/PascalVOC-detection/split3/scale_ablation/CUSTOM_faster_rcnn_R_101_FPN_ft_all3_1shot_randnovel_1scale.yaml MODEL.WEIGHTS checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3/model_reset_surgery.pth
 
 
 python tools/ckpt_surgery.py \
-        --src2 checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_base3/model_reset_surgery.pth \
-        --src1 dl.yf.io/fs-det/models/voc/split3/base_model/model_final.pth \
+        --src1 checkpoints/voc/faster_rcnn/faster_rcnn_R_101_FPN_all3/model_reset_surgery.pth \
+        --src2 /home/ubuntu/fsodet-run/checkpoints/voc/faster_rcnn/CUSTOM_faster_rcnn_R_101_FPN_ft_normalized_all3_1shot_randnovel_1scale/model_final.pth \
         --method combine \
         --save-dir checkpoints/voc/faster_rcnn/CUSTOM_faster_rcnn_R_101_FPN_all3
 

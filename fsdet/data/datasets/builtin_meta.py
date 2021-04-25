@@ -177,7 +177,7 @@ PASCAL_VOC_ALL_CATEGORIES = {
         'tvmonitor', 'boat', 'cat', 'motorbike', 'sheep', 'sofa'],
 }
 
-AQUARIUM_ALL_CATEGORIES = {
+AQUARIUM_ALL_CATEGORIES  = {
     1: ['aeroplane', 'bicycle', 'boat', 'bottle', 'car', 'cat', 'chair',
         'diningtable', 'dog', 'horse', 'person', 'pottedplant', 'sheep',
         'train', 'tvmonitor','fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],
@@ -189,11 +189,11 @@ AQUARIUM_ALL_CATEGORIES = {
         'tvmonitor', 'fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],
 }
 
-# PASCAL_VOC_NOVEL_CATEGORIES = {
-#     1: ['bird', 'bus', 'cow', 'motorbike', 'sofa'],
-#     2: ['aeroplane', 'bottle', 'cow', 'horse', 'sofa'],
-#     3: ['boat', 'cat', 'motorbike', 'sheep', 'sofa']
-# }
+PASCAL_VOC_NOVEL_CATEGORIES = {
+    1: ['bird', 'bus', 'cow', 'motorbike', 'sofa'],
+    2: ['aeroplane', 'bottle', 'cow', 'horse', 'sofa'],
+    3: ['boat', 'cat', 'motorbike', 'sheep', 'sofa']
+}
 
 AQUARIUM_NOVEL_CATEGORIES= {
     1:['fish', 'jellyfish', 'penguin', 'shark', 'puffin', 'stingray','starfish'],

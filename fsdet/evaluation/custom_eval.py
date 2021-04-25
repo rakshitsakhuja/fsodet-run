@@ -198,12 +198,22 @@ class CustomPascalVOCDetectionEvaluator(DatasetEvaluator):
         self._dataset_name = dataset_name
         meta = MetadataCatalog.get(dataset_name)
         print("meta.dirname",meta.dirname)
+        # if 'voc' in meta.dirname:
+        #   meta.dirname='/content/drive/MyDrive/FewShotObjectDetection/fsodet/few-shot-object-detection-0.1/datasets/VOC2007'
+          
         self._anno_file_template = os.path.join(meta.dirname, "Annotations", "{}.xml")
         self._image_set_path = os.path.join(meta.dirname, "ImageSets", "Main", meta.split + ".txt")
+        print('meta.split',meta.split)
+        print('self._image_set_path',self._image_set_path)
+        
         self._class_names = meta.thing_classes
+        print('self._class_names',self._class_names)
         # add this two terms for calculating the mAP of different subset
+        
         self._base_classes = meta.base_classes
         self._novel_classes = meta.novel_classes
+        print('self._base_classes',self._base_classes)
+        print('self._novel_classes',self._novel_classes)
         # assert meta.year in [2007, 2012], meta.year
         # self._is_2007 = meta.year == 2007
         self._cpu_device = torch.device("cpu")
@@ -213,12 +223,16 @@ class CustomPascalVOCDetectionEvaluator(DatasetEvaluator):
         self._predictions = defaultdict(list)  # class name -> list of prediction strings
 
     def process(self, inputs, outputs):
+        # print('process')
         for input, output in zip(inputs, outputs):
+          
             image_id = input["image_id"]
             instances = output["instances"].to(self._cpu_device)
+            # print('image_id ,instances',image_id ,instances)
             boxes = instances.pred_boxes.tensor.numpy()
             scores = instances.scores.tolist()
             classes = instances.pred_classes.tolist()
+            # print(boxes,scores,classes)
             for box, score, cls in zip(boxes, scores, classes):
                 xmin, ymin, xmax, ymax = box
                 # The inverse of data loading logic in `datasets/pascal_voc.py`
@@ -227,6 +241,7 @@ class CustomPascalVOCDetectionEvaluator(DatasetEvaluator):
                 self._predictions[cls].append(
                     f"{image_id} {score:.3f} {xmin:.1f} {ymin:.1f} {xmax:.1f} {ymax:.1f}"
                 )
+        # print(self._predictions)
 
     def evaluate(self):
         """
@@ -271,7 +286,7 @@ class CustomPascalVOCDetectionEvaluator(DatasetEvaluator):
                         cls_name,
                         ovthresh=thresh / 100.0,
                         # use_07_metric=self._is_2007,
-                        use_07_metric=False,
+                        use_07_metric=True,
                     )
                     aps[thresh].append(ap * 100)
 

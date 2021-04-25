@@ -28,6 +28,13 @@ from .pascal_voc import register_pascal_voc
 from .meta_pascal_voc import register_meta_pascal_voc
 from .builtin_meta import _get_builtin_metadata
 
+custom=True
+
+if custom:
+  DIRNAME_VOC='aquarium'
+else:
+  DIRNAME_VOC='VOC'
+
 
 # ==== Predefined datasets and splits for COCO ==========
 
@@ -132,13 +139,13 @@ def register_all_lvis(root="datasets"):
 # ==== Predefined splits for PASCAL VOC ===========
 def register_all_pascal_voc(root="datasets"):
     SPLITS = [
-        # ("voc_2007_trainval", "VOC2007", "trainval"),
-        # ("voc_2007_train", "VOC2007", "train"),
-        # ("voc_2007_val", "VOC2007", "val"),
-        # ("voc_2007_test", "VOC2007", "test"),
-        # ("voc_2012_trainval", "VOC2012", "trainval"),
-        # ("voc_2012_train", "VOC2012", "train"),
-        # ("voc_2012_val", "VOC2012", "val"),
+        ("voc_2007_trainval", "VOC2007", "trainval"),
+        ("voc_2007_train", "VOC2007", "train"),
+        ("voc_2007_val", "VOC2007", "val"),
+        ("voc_2007_test", "VOC2007", "test"),
+        ("voc_2012_trainval", "VOC2012", "trainval"),
+        ("voc_2012_train", "VOC2012", "train"),
+        ("voc_2012_val", "VOC2012", "val"),
         ("aquarium_2007_trainval", "aquarium2007", "trainval"),
         ("aquarium_2007_train", "aquarium2007", "train"),
         ("aquarium_2007_val", "aquarium2007", "val"),
@@ -147,31 +154,35 @@ def register_all_pascal_voc(root="datasets"):
     for name, dirname, split in SPLITS:
         year = 2007 if "2007" in name else 2012
         register_pascal_voc(name, os.path.join(root, dirname), split, year)
-        MetadataCatalog.get(name).evaluator_type = "custom_voc"
+        if custom:
+          MetadataCatalog.get(name).evaluator_type = "custom_voc"
+        else:
+          MetadataCatalog.get(name).evaluator_type = "pascal_voc"
 
     # register meta datasets
     METASPLITS = [
-        # ("voc_2007_trainval_base1", "VOC2007", "trainval", "base1", 1),
-        # ("voc_2007_trainval_base2", "VOC2007", "trainval", "base2", 2),
-        # ("voc_2007_trainval_base3", "VOC2007", "trainval", "base3", 3),
-        # ("voc_2012_trainval_base1", "VOC2012", "trainval", "base1", 1),
-        # ("voc_2012_trainval_base2", "VOC2012", "trainval", "base2", 2),
-        # ("voc_2012_trainval_base3", "VOC2012", "trainval", "base3", 3),
-        # ("voc_2007_trainval_all1", "VOC2007", "trainval", "base_novel_1", 1),
-        # ("voc_2007_trainval_all2", "VOC2007", "trainval", "base_novel_2", 2),
-        # ("voc_2007_trainval_all3", "VOC2007", "trainval", "base_novel_3", 3),
-        # ("voc_2012_trainval_all1", "VOC2012", "trainval", "base_novel_1", 1),
-        # ("voc_2012_trainval_all2", "VOC2012", "trainval", "base_novel_2", 2),
-        # ("voc_2012_trainval_all3", "VOC2012", "trainval", "base_novel_3", 3),
-        # ("voc_2007_test_base1", "VOC2007", "test", "base1", 1),
-        # ("voc_2007_test_base2", "VOC2007", "test", "base2", 2),
-        # ("voc_2007_test_base3", "VOC2007", "test", "base3", 3),
-        # ("voc_2007_test_novel1", "VOC2007", "test", "novel1", 1),
-        # ("voc_2007_test_novel2", "VOC2007", "test", "novel2", 2),
-        # ("voc_2007_test_novel3", "VOC2007", "test", "novel3", 3),
-        # ("voc_2007_test_all1", "VOC2007", "test", "base_novel_1", 1),
-        # ("voc_2007_test_all2", "VOC2007", "test", "base_novel_2", 2),
-        # ("voc_2007_test_all3", "VOC2007", "test", "base_novel_3", 3),
+        ("voc_2007_trainval_base1", "VOC2007", "trainval", "base1", 1),
+        ("voc_2007_trainval_base2", "VOC2007", "trainval", "base2", 2),
+        ("voc_2007_trainval_base3", "VOC2007", "trainval", "base3", 3),
+        ("voc_2012_trainval_base1", "VOC2012", "trainval", "base1", 1),
+        ("voc_2012_trainval_base2", "VOC2012", "trainval", "base2", 2),
+        ("voc_2012_trainval_base3", "VOC2012", "trainval", "base3", 3),
+        ("voc_2007_trainval_all1", "VOC2007", "trainval", "base_novel_1", 1),
+        ("voc_2007_trainval_all2", "VOC2007", "trainval", "base_novel_2", 2),
+        ("voc_2007_trainval_all3", "VOC2007", "trainval", "base_novel_3", 3),
+        ("voc_2012_trainval_all1", "VOC2012", "trainval", "base_novel_1", 1),
+        ("voc_2012_trainval_all2", "VOC2012", "trainval", "base_novel_2", 2),
+        ("voc_2012_trainval_all3", "VOC2012", "trainval", "base_novel_3", 3),
+        ("voc_2007_test_base1", "VOC2007", "test", "base1", 1),
+        ("voc_2007_test_base2", "VOC2007", "test", "base2", 2),
+        ("voc_2007_test_base3", "VOC2007", "test", "base3", 3),
+        ("voc_2007_test_novel1", "VOC2007", "test", "novel1", 1),
+        ("voc_2007_test_novel2", "VOC2007", "test", "novel2", 2),
+        ("voc_2007_test_novel3", "VOC2007", "test", "novel3", 3),
+        ("voc_2007_test_all1", "VOC2007", "test", "base_novel_1", 1),
+        ("voc_2007_test_all2", "VOC2007", "test", "base_novel_2", 2),
+        ("voc_2007_test_all3", "VOC2007", "test", "base_novel_3", 3),
+        
         ("aquarium_2007_trainval_base1", "aquarium2007", "trainval", "base1", 1),
         ("aquarium_2007_trainval_base2", "aquarium2007", "trainval", "base2", 2),
         ("aquarium_2007_trainval_base3", "aquarium2007", "trainval", "base3", 3),
@@ -187,6 +198,8 @@ def register_all_pascal_voc(root="datasets"):
         ("aquarium_2007_test_all1", "aquarium2007", "test", "base_novel_1", 1),
         ("aquarium_2007_test_all2", "aquarium2007", "test", "base_novel_2", 2),
         ("aquarium_2007_test_all3", "aquarium2007", "test", "base_novel_3", 3),
+        
+        ("aquarium_2007_val_all3", "aquarium2007", "val","base_novel_3",3)
 
     ]
 
@@ -200,11 +213,11 @@ def register_all_pascal_voc(root="datasets"):
                         seed = '' if seed == 0 else '_seed{}'.format(seed)
                         # name = "voc_{}_trainval_{}{}_{}shot{}".format(
                         #     year, prefix, sid, shot, seed)
-                        name = "aquarium_{}_trainval_{}{}_{}shot{}".format(
+                        name = DIRNAME_VOC+"_{}_trainval_{}{}_{}shot{}".format(
                             year, prefix, sid, shot, seed)
 
                         # dirname = "VOC{}".format(year)
-                        dirname="aquarium{}".format(year)
+                        dirname=DIRNAME_VOC+"{}".format(year)
                         img_file = "{}_{}shot_split_{}_trainval".format(
                             prefix, shot, sid)
                         keepclasses = "base_novel_{}".format(sid) \
@@ -214,12 +227,21 @@ def register_all_pascal_voc(root="datasets"):
 
     for name, dirname, split, keepclasses, sid in METASPLITS:
         year = 2007 if "2007" in name else 2012
-        register_meta_pascal_voc(name,
+        if custom :
+          register_meta_pascal_voc(name,
                                 #  _get_builtin_metadata("pascal_voc_fewshot"),
                                 _get_builtin_metadata("aquarium_fewshot"),
                                  os.path.join(root, dirname), split, year,
                                  keepclasses, sid)
-        MetadataCatalog.get(name).evaluator_type = "custom_voc"
+          MetadataCatalog.get(name).evaluator_type = "custom_voc"
+        else:
+          register_meta_pascal_voc(name,
+                                 _get_builtin_metadata("pascal_voc_fewshot"),
+                                # _get_builtin_metadata("aquarium_fewshot"),
+                                 os.path.join(root, dirname), split, year,
+                                 keepclasses, sid)
+          MetadataCatalog.get(name).evaluator_type = "pascal_voc"
+          
 
 
 # Register them all under "./datasets"

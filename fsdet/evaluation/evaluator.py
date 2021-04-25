@@ -106,21 +106,24 @@ def inference_on_dataset(model, data_loader, evaluator):
 
     total = len(data_loader)  # inference data loader must have a fixed length
     evaluator.reset()
-
+    
     logging_interval = 50
     num_warmup = min(5, logging_interval - 1, total - 1)
     start_time = time.time()
     total_compute_time = 0
     with inference_context(model), torch.no_grad():
         for idx, inputs in enumerate(data_loader):
+            # print(inputs)
             if idx == num_warmup:
                 start_time = time.time()
                 total_compute_time = 0
 
+            # print('in the loop-inference-context')
             start_compute_time = time.time()
             outputs = model(inputs)
             torch.cuda.synchronize()
             total_compute_time += time.time() - start_compute_time
+            # print('Going into Process class')
             evaluator.process(inputs, outputs)
 
             if (idx + 1) % logging_interval == 0:

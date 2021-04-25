@@ -54,16 +54,16 @@ class DatasetCatalog(object):
         try:
             f = DatasetCatalog._REGISTERED[name]
         except KeyError:
-            raise KeyError(
-                "Dataset '{}' is not registered!".format(
-                    name)
-                )
-            
             # raise KeyError(
-            #     "Dataset '{}' is not registered! Available datasets are: {}".format(
-            #         name, ", ".join(DatasetCatalog._REGISTERED.keys())
+            #     "Dataset '{}' is not registered!".format(
+            #         name)
             #     )
-            # )
+            
+            raise KeyError(
+                "Dataset '{}' is not registered! Available datasets are: {}".format(
+                    name, ", ".join(DatasetCatalog._REGISTERED.keys())
+                )
+            )
         return f()
 
     @staticmethod

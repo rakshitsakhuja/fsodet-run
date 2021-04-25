@@ -1,6 +1,9 @@
 # Few-Shot Object Detection (FsDet)
 
 
+My Repo : https://github.com/rakshitsakhuja/fsodet-run
+Original Repo: https://github.com/ucbdrive/few-shot-object-detection/releases/tag/v0.1
+
 -------------------------------------
 1. pip install -r requirements.txt
     -   (There are some of the updates in requirement.txt file)
@@ -29,6 +32,13 @@ python3 demo/demo.py --config-file configs/PascalVOC-detection/split1/faster_rcn
 
 
 Google Drive Path : https://drive.google.com/drive/folders/1afJVwpUlj17T_l3l7U_uX2XspZ9uO8Gq?usp=sharing
+
+
+6. Implemented Random Initialization
+7. Trained Model for Few Shot and Novel shot
+8. Dataset was too domain restricted -Aquatic Species- Did not achieve good result - which is one of the drawback of these kind of few shot models
+9. Need to test it on generic dataset 
+10. Few Shot training for transfer learning on effecientdet is in pipeline
 
 
 
